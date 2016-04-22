@@ -7,47 +7,87 @@
     body { margin: 0; }
     canvas { width: 100%; height: 100% }
   </style>
-   
+
 </head>
 <body>
   {!! Html::script('js/three.min.js'); !!}
   {!! Html::script('js/threex.dynamictexture.js'); !!}
   {!! Html::script('js/Tween.js'); !!}
-  
+  {!! Html::script('js/TrackballControls.js'); !!}
+
   <script> // Our Javascript will go here.
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    var text = new THREEx.DynamicTexture(512, 512);
-    text.context.font = "bolder 90px Verdana";
-    text.clear('cyan').drawText("hello", undefined, 256, 'red');
-    var text1 = new THREEx.DynamicTexture(512, 512);
-    text1.context.font = "bolder 90px Verdana";
-    text1.clear('cyan').drawText("world", undefined, 256, 'red');
-    var renderer = new THREE.WebGLRenderer({antialias:true}); 
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
-    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshBasicMaterial({color: 'cyan', map:text.texture} );
-    var cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
-    var geometry1 = new THREE.BoxGeometry( 1, 2, 1 );
-    var material1 = new THREE.MeshBasicMaterial({color: 'cyan', map:text1.texture} );
-    var cube1 = new THREE.Mesh( geometry1, material1 );
-    scene.add( cube1 );
-    cube1.position.set(1.5, 0, 0);
-    camera.position.z = 5;
-    new TWEEN.Tween(cube.position).to({x: 1.5}, 2000).repeat(0).start();
-    new TWEEN.Tween(cube1.position).to({x: 0}, 2000).repeat(0).start();
-    function render() {
-      requestAnimationFrame( render );
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      cube1.rotation.x += 0.01;
-      cube1.rotation.y += 0.01;
+    var camera, scene, renderer;
+    var cubes = [];
+    var nums = [1,2,3,4,5,6,7,8,9];
+    init();
+    makeCubes();
+    animate();
+    render();
+    //bubbleSort(cubes, nums);
+
+    function init() {
+      // camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000);
+      camera = new THREE.OrthographicCamera( window.innerWidth / -2,  window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
+      camera.position.z = 500;
+
+      controls = new THREE.TrackballControls( camera );
+      controls.addEventListener('change', render);
+
+      scene = new THREE.Scene();
+
+      renderer = new THREE.WebGLRenderer({antialias:true});
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+    }
+
+    function makeCubes() {
+      for (var i = 0; i < 10; ++i) {
+        var text = new THREEx.DynamicTexture(512, 512);
+        text.context.font = "bolder 90px Verdana";
+        text.clear('cyan').drawText(i.toString(), undefined, 256, 'red');
+
+        var geometry = new THREE.BoxGeometry( 100, (i + 1) * 50, 100 );
+
+        var material = new THREE.MeshBasicMaterial({color: 'cyan', map:text.texture} );
+
+        var cube = new THREE.Mesh( geometry, material );
+        cubes.push(cube);
+        cube.position.x = -700 + i * 130;
+        cube.position.y = -300 + (i + 1) * 25;
+        console.log(cube.position.y);
+        scene.add( cube );
+      }
+    }
+
+    //new TWEEN.Tween(cube.position).to({x: 1.5}, 2000).repeat(0).start();
+    //new TWEEN.Tween(cube1.position).to({x: 0}, 2000).repeat(0).start();
+    function animate() {
+      requestAnimationFrame( animate );
+      cubes.map(function(cube) {
+         cube.rotation.x += 0.01;
+         cube.rotation.y += 0.01;
+         cube.scale
+      });
+      controls.update();
       TWEEN.update();
+      render();
+    }
+
+    function render() {
       renderer.render( scene, camera );
     }
-    render();
+
+    function bubbleSort(cubes, nums) {
+      for (var i = 0; i < cubes.length; ++i) {
+        for (var j = i; j < cubes.length; ++j) {
+          if (nums[i] < nums[j]) {
+            new TWEEN.Tween(cubes[i].scale).to({y:j}, 1000).repeat(0).start();
+            new TWEEN.Tween(cubes[j].scale).to({y:i}, 1000).repeat(0).start();
+            console.log(i, j);
+          }
+        }
+      }
+    }
     /*function swapPosition(cube, cube1)
     {
       var temp = cube.position.x;
