@@ -12,8 +12,9 @@
 <body>
   {!! Html::script('js/three.min.js'); !!}
   {!! Html::script('js/threex.dynamictexture.js'); !!}
+  {!! Html::script('js/Tween.js'); !!}
+  
   <script> // Our Javascript will go here.
-
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     var text = new THREEx.DynamicTexture(512, 512);
@@ -22,7 +23,8 @@
     var text1 = new THREEx.DynamicTexture(512, 512);
     text1.context.font = "bolder 90px Verdana";
     text1.clear('cyan').drawText("world", undefined, 256, 'red');
-    var renderer = new THREE.WebGLRenderer(); renderer.setSize( window.innerWidth, window.innerHeight );
+    var renderer = new THREE.WebGLRenderer({antialias:true}); 
+    renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
     var geometry = new THREE.BoxGeometry( 1, 1, 1 );
     var material = new THREE.MeshBasicMaterial({color: 'cyan', map:text.texture} );
@@ -34,22 +36,26 @@
     scene.add( cube1 );
     cube1.position.set(1.5, 0, 0);
     camera.position.z = 5;
+    new TWEEN.Tween(cube.position).to({x: 1.5}, 2000).repeat(0).start();
+    new TWEEN.Tween(cube1.position).to({x: 0}, 2000).repeat(0).start();
     function render() {
       requestAnimationFrame( render );
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       cube1.rotation.x += 0.01;
       cube1.rotation.y += 0.01;
+      TWEEN.update();
       renderer.render( scene, camera );
     }
-    function swapPosition(cube, cube1)
+    render();
+    /*function swapPosition(cube, cube1)
     {
       var temp = cube.position.x;
       cube.position.x = cube1.position.x;
       cube1.position.x = temp;
     }
     render();
-    swapPosition(cube, cube1);
+    //swapPosition(cube, cube1);
     /*var camera, scene, renderer;
     var geometry, material, mesh;
 
