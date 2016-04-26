@@ -18,18 +18,22 @@
   <script> // Our Javascript will go here.
     var camera, scene, renderer;
     var cubes = [];
-    var nums = [0,1,2,3,4,5,6,7,8,9];
-    var queue = [];
+    var nums = [9,0,1,3,4,5,4,7,8,7];
+    var animations = [];//所有动作集合
+    var des = [];//每个动作下cube要去的地方
+    var positions = [];//每个动作完成后cube应该在的地方
+    var moveCubes = [];//每个动作动的是哪个cube
+    //var dic = new ActiveXObject("Scripting.Dictionary");
     init();
-    makeCubes();
-    // bubbleSort(cubes, nums);
-    swap(cubes[0], cubes[1]);
-    swap(cubes[1], cubes[7]);
-    animate();
+    makeCubes(nums);
     //render();
-    // debugger;
-    //
-    //render();
+    bubbleSort();
+    //animate();
+
+    //bubbleSort();
+    // swap(cubes[0], cubes[1]);
+    // swap(cubes[1], cubes[7]);
+
 
     function init() {
       // camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000);
@@ -46,11 +50,12 @@
       document.body.appendChild( renderer.domElement );
     }
 
-    function makeCubes() {
-      for (var i = 0; i < 10; ++i) {
+
+    function makeCubes(nums) {
+      for (var i = 0; i < 10; i++) {
         var text = new THREEx.DynamicTexture(512, 512);
         text.context.font = "bolder 90px Verdana";
-        text.clear('cyan').drawText(i.toString(), undefined, 256, 'red');
+        text.clear('cyan').drawText(nums[i].toString(), undefined, 256, 'red');
 
         // var geometry = new THREE.BoxGeometry( 100, (i + 1) * 50, 100 );
         var geometry = new THREE.BoxGeometry( 100, 100, 100 );
@@ -61,14 +66,16 @@
         cubes.push(cube);
         cube.position.x = -700 + i * 130;
         // cube.position.y = -300 + (i + 1) * 25;
-        console.log(cube.position.y);
+        //console.log(cube.position.y);
+        //alert(cube);
+        positions.push(cube.position.x);
+
         scene.add( cube );
       }
     }
 
     //new TWEEN.Tween(cube.position).to({x: 1.5}, 2000).repeat(0).start();
     //new TWEEN.Tween(cube1.position).to({x: 0}, 2000).repeat(0).start();
-
     function animate() {
       requestAnimationFrame( animate );
       cubes.map(function(cube) {
@@ -76,18 +83,8 @@
          cube.rotation.y += 0.01;
          cube.scale
       });
-      // var params = queue.shift();
-      // swap(cubes[params[0]], cubes[params[1]]);
-      // debugger;
-      if (queue.length != 0) {
-        var action = queue.shift();
-        if (action.start() == true) {
-
-        }
-      }
-      swap(cube, cube1. swap(cube1, cube2));
-      TWEEN.update();
       controls.update();
+      TWEEN.update();
       render();
     }
 
@@ -95,100 +92,72 @@
       renderer.render( scene, camera );
     }
 
-    function bubbleSort(cubes, nums) {
-      for (var i = 0; i < cubes.length; i += 1) {
-        for (var j = i; j < cubes.length; j += 1) {
+
+    function bubbleSort() {
+
+      for (var i = 0; i < cubes.length; i++) {
+        for (var j = i + 1; j < cubes.length; j++) {
           if (nums[i] < nums[j]) {
-            //swap(cubes[i], cubes[j]);
-            queue.push([i, j]);
-            var tempCube = cubes[i];
-            cubes[i] = cubes[j];
-            cubes[j] = tempCube;
-            var tempNum = nums[i];
+            swap(cubes[i], cubes[j], positions[i], positions[j]);
+            var temp = positions[i];
+            positions[i] = positions[j];
+            positions[j] = temp;
+            var temp = nums[i];
             nums[i] = nums[j];
-            nums[j] = tempNum;
-            console.log(nums);
-            console.log(cubes);
+            nums[j] = temp;
           }
+          //animate();
         }
       }
     }
 
-    function createAction(cube, cube1,positionx, positiony, positionx1, positiony1) {
-      TWEEN.removeAll();
+    function createAction(cube, positionx, positiony) {
+      //TWEEN.removeAll();
       var tweenA = new TWEEN.Tween(cube.position);
       var tweenB = new TWEEN.Tween(cube.position);
       var tweenC = new TWEEN.Tween(cube.position);
       tweenA.to({y: positiony}, 1000).repeat(0);
       tweenB.to({x: positionx}, 1000).repeat(0);
-      tweenC.to({y: 0}, 1000).repeat(0).onComplete(function() {
-        return true;
-      });
+      tweenC.to({y: 0}, 1000).repeat(0);
       tweenA.chain(tweenB);
       tweenB.chain(tweenC);
-      var tweenA1 = new TWEEN.Tween(cube1.position);
-      var tweenB1 = new TWEEN.Tween(cube1.position);
-      var tweenC1 = new TWEEN.Tween(cube1.position);
-      tweenA1.to({y: positiony1}, 1000).repeat(0);
-      tweenB1.to({x: positionx1}, 1000).repeat(0);
-      tweenC1.to({y: 0}, 1000).repeat(0);
-      tweenA1.chain(tweenB1);
-      tweenB1.chain(tweenC1);
-      queue.push([tweenA, tweenA1]);
+      //tweenA.start();
+      animations.push(tweenA);
+      des.push(positionx);
+      //moveCubes.push(cube);
+
     }
 
-    function swap(cube1, cube2) {
-      var x1 = cube1.position.x;
-      var x2 = cube2.position.x;
-      createAction(cube1, cube2, x2, 1, x1, -1)
+    function swap(cube1, cube2, x1, x2) {
+
+      createAction(cube1, x2, 1);
+      createAction(cube2, x1, -1);
+      /*var text = new THREEx.DynamicTexture(512, 512);
+        text.context.font = "bolder 90px Verdana";
+        text.clear('cyan').drawText(i.toString(), undefined, 256, 'red');
+        cube2.material.map = text;*/
+
     }
-
-    function doNothing() {
-      console.log("doing nothing");
+    function isComplete(cube, x){
+      if(cube.position.x == x)
+        {return true;}
+      return false;
     }
-    /*function swapPosition(cube, cube1)
-    {
-      var temp = cube.position.x;
-      cube.position.x = cube1.position.x;
-      cube1.position.x = temp;
+    function fuck(){
+      for(var i = 0; i < animations.length; i++)
+      {
+        animations[i].delay(i / 2 * 3000);
+        animations[i].start();
+        i++
+        animations[i].delay(Math.floor(i / 2) * 3000);
+        animations[i].start();
+      }
     }
-    render();
-    //swapPosition(cube, cube1);
-    /*var camera, scene, renderer;
-    var geometry, material, mesh;
+    fuck();
+    animate();
 
 
 
-
-
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
-    camera.position.z = 1000;
-
-    scene = new THREE.Scene();
-    //var text = new THREE.Dynamictexture(100, 100);
-    //text.texture = 'hello';
-    geometry = new THREE.BoxGeometry(200, 200, 200);
-    material = new THREE.MeshBasicMaterial({
-        color: 0xff0000,
-        wireframe: false,
-        //map: text.texture
-    });
-
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    document.body.appendChild(renderer.domElement);
-
-
-    requestAnimationFrame(animate);
-
-    mesh.rotation.x += 0.0;
-    mesh.rotation.y += 0.0;
-
-    renderer.render(scene, camera);*/
 
 
   </script>
