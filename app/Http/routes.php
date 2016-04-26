@@ -22,3 +22,7 @@ Route::get('home', function () {
 Route::get('graph', function() {
   return view('graph');
 });
+
+Route::get('bfs', function() {
+  return view('BFS');
+});

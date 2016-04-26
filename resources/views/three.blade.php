@@ -18,7 +18,7 @@
   <script> // Our Javascript will go here.
     var camera, scene, renderer;
     var cubes = [];
-    var nums = [9,0,1,3,4,5,4,7,8,7];
+    var nums = [3,2,7,8,9,1,6,4,5,0];
     var animations = [];//所有动作集合
     var des = [];//每个动作下cube要去的地方
     var positions = [];//每个动作完成后cube应该在的地方
@@ -99,6 +99,7 @@
         for (var j = i + 1; j < cubes.length; j++) {
           if (nums[i] < nums[j]) {
             swap(cubes[i], cubes[j], positions[i], positions[j]);
+            debugger;
             var temp = positions[i];
             positions[i] = positions[j];
             positions[j] = temp;
