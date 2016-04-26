@@ -50,6 +50,7 @@
       document.body.appendChild( renderer.domElement );
     }
 
+
     function makeCubes(nums) {
       for (var i = 0; i < 10; i++) {
         var text = new THREEx.DynamicTexture(512, 512);
@@ -68,13 +69,13 @@
         //console.log(cube.position.y);
         //alert(cube);
         positions.push(cube.position.x);
+
         scene.add( cube );
       }
     }
 
     //new TWEEN.Tween(cube.position).to({x: 1.5}, 2000).repeat(0).start();
     //new TWEEN.Tween(cube1.position).to({x: 0}, 2000).repeat(0).start();
-    var count = 0;
     function animate() {
       requestAnimationFrame( animate );
       cubes.map(function(cube) {
@@ -90,6 +91,7 @@
     function render() {
       renderer.render( scene, camera );
     }
+
 
     function bubbleSort() {
 
@@ -123,6 +125,7 @@
       animations.push(tweenA);
       des.push(positionx);
       //moveCubes.push(cube);
+
     }
 
     function swap(cube1, cube2, x1, x2) {
@@ -153,42 +156,8 @@
     fuck();
     animate();
 
-    //swapPosition(cube, cube1);
-    /*var camera, scene, renderer;
-    var geometry, material, mesh;
-
-
-
-
-
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
-    camera.position.z = 1000;
-
-    scene = new THREE.Scene();
-    //var text = new THREE.Dynamictexture(100, 100);
-    //text.texture = 'hello';
-    geometry = new THREE.BoxGeometry(200, 200, 200);
-    material = new THREE.MeshBasicMaterial({
-        color: 0xff0000,
-        wireframe: false,
-        //map: text.texture
-    });
-
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    document.body.appendChild(renderer.domElement);
-
-
-    requestAnimationFrame(animate);
-
-    mesh.rotation.x += 0.0;
-    mesh.rotation.y += 0.0;
-
-    renderer.render(scene, camera);*/
+ 
+    
 
 
   </script>
