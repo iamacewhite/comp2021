@@ -29,11 +29,11 @@
     //render();
     bubbleSort();
     //animate();
-    
+
     //bubbleSort();
     // swap(cubes[0], cubes[1]);
     // swap(cubes[1], cubes[7]);
-    
+
 
     function init() {
       // camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000);
@@ -129,7 +129,7 @@
     }
 
     function swap(cube1, cube2, x1, x2) {
-      
+
       createAction(cube1, x2, 1);
       createAction(cube2, x1, -1);
       /*var text = new THREEx.DynamicTexture(512, 512);
@@ -156,8 +156,8 @@
     fuck();
     animate();
 
- 
-    
+
+
 
 
   </script>
