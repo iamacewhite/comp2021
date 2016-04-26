@@ -56,7 +56,7 @@ var cy = cytoscape({
 });
 
 var bfs = cy.elements().bfs('#a', function(){}, true);
-
+var dil = cy.elements().
 var i = 0;
 var highlightNextEle = function(){
   if( i < bfs.path.length ){

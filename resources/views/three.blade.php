@@ -18,7 +18,7 @@
   <script> // Our Javascript will go here.
     var camera, scene, renderer;
     var cubes = [];
-    var nums = [3,2,7,8,9,1,6,4,5,0];
+    var nums = [2,5,7,9,3,4,8,6,1,0];
     var animations = [];//所有动作集合
     var des = [];//每个动作下cube要去的地方
     var positions = [];//每个动作完成后cube应该在的地方
@@ -27,7 +27,8 @@
     init();
     makeCubes(nums);
     //render();
-    bubbleSort();
+    //bubbleSort();
+    insertSort();
     //animate();
 
     //bubbleSort();
@@ -65,6 +66,7 @@
         var cube = new THREE.Mesh( geometry, material );
         cubes.push(cube);
         cube.position.x = -700 + i * 130;
+        cube.position.y = 0;
         // cube.position.y = -300 + (i + 1) * 25;
         //console.log(cube.position.y);
         //alert(cube);
@@ -99,24 +101,39 @@
         for (var j = i + 1; j < cubes.length; j++) {
           if (nums[i] < nums[j]) {
             swap(cubes[i], cubes[j], positions[i], positions[j]);
-            debugger;
-            var temp = positions[i];
-            positions[i] = positions[j];
-            positions[j] = temp;
-            var temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
+            swapValue(cubes, i, j);
+            swapValue(nums, i, j);
+            // var temp = cubes[i];
+            // cubes[i] = cubes[j];
+            // cubes[j] = temp;
+            // var temp = nums[i];
+            // nums[i] = nums[j];
+            // nums[j] = temp;
           }
           //animate();
         }
       }
     }
+    function insertSort(){
+      for(var j = 1; j < cubes.length; j++)
+      {
+        //var key = nums[j];
+        var i = j - 1
+        for(; i >= 0 && nums[i] < nums[i + 1]; i--)
+        {
+            swap(cubes[i + 1], cubes[i], positions[i + 1], positions[i]);
+            swapValue(cubes, i + 1, i);
+            swapValue(nums, i + 1, i);
 
+        }
+      }
+    }
     function createAction(cube, positionx, positiony) {
       //TWEEN.removeAll();
       var tweenA = new TWEEN.Tween(cube.position);
       var tweenB = new TWEEN.Tween(cube.position);
       var tweenC = new TWEEN.Tween(cube.position);
+      //console.log(positiony);
       tweenA.to({y: positiony}, 1000).repeat(0);
       tweenB.to({x: positionx}, 1000).repeat(0);
       tweenC.to({y: 0}, 1000).repeat(0);
@@ -131,8 +148,8 @@
 
     function swap(cube1, cube2, x1, x2) {
 
-      createAction(cube1, x2, 1);
-      createAction(cube2, x1, -1);
+      createAction(cube1, x2, 100);
+      createAction(cube2, x1, 0);
       /*var text = new THREEx.DynamicTexture(512, 512);
         text.context.font = "bolder 90px Verdana";
         text.clear('cyan').drawText(i.toString(), undefined, 256, 'red');
@@ -153,6 +170,12 @@
         animations[i].delay(Math.floor(i / 2) * 3000);
         animations[i].start();
       }
+    }
+    function swapValue(arr, x, y)
+    {
+      var temp = arr[x];
+      arr[x] =  arr[y];
+      arr[y] = temp;
     }
     fuck();
     animate();
