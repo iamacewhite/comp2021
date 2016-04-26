@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('three');
 });
+
+Route::get('graph', function() {
+  return view('graph');
+});

@@ -18,12 +18,18 @@
   <script> // Our Javascript will go here.
     var camera, scene, renderer;
     var cubes = [];
-    var nums = [1,2,3,4,5,6,7,8,9];
+    var nums = [0,1,2,3,4,5,6,7,8,9];
+    var queue = [];
     init();
     makeCubes();
+    // bubbleSort(cubes, nums);
+    swap(cubes[0], cubes[1]);
+    swap(cubes[1], cubes[7]);
     animate();
-    render();
-    //bubbleSort(cubes, nums);
+    //render();
+    // debugger;
+    //
+    //render();
 
     function init() {
       // camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000);
@@ -46,14 +52,15 @@
         text.context.font = "bolder 90px Verdana";
         text.clear('cyan').drawText(i.toString(), undefined, 256, 'red');
 
-        var geometry = new THREE.BoxGeometry( 100, (i + 1) * 50, 100 );
+        // var geometry = new THREE.BoxGeometry( 100, (i + 1) * 50, 100 );
+        var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
         var material = new THREE.MeshBasicMaterial({color: 'cyan', map:text.texture} );
 
         var cube = new THREE.Mesh( geometry, material );
         cubes.push(cube);
         cube.position.x = -700 + i * 130;
-        cube.position.y = -300 + (i + 1) * 25;
+        // cube.position.y = -300 + (i + 1) * 25;
         console.log(cube.position.y);
         scene.add( cube );
       }
@@ -61,6 +68,7 @@
 
     //new TWEEN.Tween(cube.position).to({x: 1.5}, 2000).repeat(0).start();
     //new TWEEN.Tween(cube1.position).to({x: 0}, 2000).repeat(0).start();
+
     function animate() {
       requestAnimationFrame( animate );
       cubes.map(function(cube) {
@@ -68,8 +76,18 @@
          cube.rotation.y += 0.01;
          cube.scale
       });
-      controls.update();
+      // var params = queue.shift();
+      // swap(cubes[params[0]], cubes[params[1]]);
+      // debugger;
+      if (queue.length != 0) {
+        var action = queue.shift();
+        if (action.start() == true) {
+
+        }
+      }
+      swap(cube, cube1. swap(cube1, cube2));
       TWEEN.update();
+      controls.update();
       render();
     }
 
@@ -78,15 +96,55 @@
     }
 
     function bubbleSort(cubes, nums) {
-      for (var i = 0; i < cubes.length; ++i) {
-        for (var j = i; j < cubes.length; ++j) {
+      for (var i = 0; i < cubes.length; i += 1) {
+        for (var j = i; j < cubes.length; j += 1) {
           if (nums[i] < nums[j]) {
-            new TWEEN.Tween(cubes[i].scale).to({y:j}, 1000).repeat(0).start();
-            new TWEEN.Tween(cubes[j].scale).to({y:i}, 1000).repeat(0).start();
-            console.log(i, j);
+            //swap(cubes[i], cubes[j]);
+            queue.push([i, j]);
+            var tempCube = cubes[i];
+            cubes[i] = cubes[j];
+            cubes[j] = tempCube;
+            var tempNum = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tempNum;
+            console.log(nums);
+            console.log(cubes);
           }
         }
       }
+    }
+
+    function createAction(cube, cube1,positionx, positiony, positionx1, positiony1) {
+      TWEEN.removeAll();
+      var tweenA = new TWEEN.Tween(cube.position);
+      var tweenB = new TWEEN.Tween(cube.position);
+      var tweenC = new TWEEN.Tween(cube.position);
+      tweenA.to({y: positiony}, 1000).repeat(0);
+      tweenB.to({x: positionx}, 1000).repeat(0);
+      tweenC.to({y: 0}, 1000).repeat(0).onComplete(function() {
+        return true;
+      });
+      tweenA.chain(tweenB);
+      tweenB.chain(tweenC);
+      var tweenA1 = new TWEEN.Tween(cube1.position);
+      var tweenB1 = new TWEEN.Tween(cube1.position);
+      var tweenC1 = new TWEEN.Tween(cube1.position);
+      tweenA1.to({y: positiony1}, 1000).repeat(0);
+      tweenB1.to({x: positionx1}, 1000).repeat(0);
+      tweenC1.to({y: 0}, 1000).repeat(0);
+      tweenA1.chain(tweenB1);
+      tweenB1.chain(tweenC1);
+      queue.push([tweenA, tweenA1]);
+    }
+
+    function swap(cube1, cube2) {
+      var x1 = cube1.position.x;
+      var x2 = cube2.position.x;
+      createAction(cube1, cube2, x2, 1, x1, -1)
+    }
+
+    function doNothing() {
+      console.log("doing nothing");
     }
     /*function swapPosition(cube, cube1)
     {
