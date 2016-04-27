@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Algorithm Visualisation</title>
+  <title>About Us</title>
   <meta charset="utf-8">
   <!-- Standard Meta -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -90,9 +90,11 @@ footer {
 
 
 
-  <!-- <link rel="stylesheet" type="text/css" href="semantic-ui/semantic.css">
+  <link rel="stylesheet" type="text/css" href="semantic-ui/semantic.css">
+  <!-- <link rel="stylesheet" type="text/css" href="css/homepage.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="iconfonts/flaticon.css"> -->
 
-  <script src="semantic-ui/semantic.js"></script> -->
+  <script src="semantic-ui/semantic.js"></script>
   <!-- <script src="js/homepage.js"></script> -->
   <link href="//cdn.muicss.com/mui-0.5.5/css/mui.min.css" rel="stylesheet" type="text/css" />
 <script src="//cdn.muicss.com/mui-0.5.5/js/mui.min.js"></script>
@@ -131,75 +133,7 @@ footer {
 <div id="content-wrapper" class="mui--text-center">
   <div class="mui--appbar-height"></div>
 <div class="container-fluid">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="8000">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <a href='/bfs'>
-        <img src="image/bfs.gif" alt="Chania" width="460" height="345" class="img">
-        <div class="carousel-caption black">
-          <h3>BFS-Breadth First Search</h3>
-        </div>
-      </a>
-      </div>
-
-      <div class="item">
-        <a href='/bubble'>
-        <img src="image/bubble.gif" alt="Chania" width="460" height="345">
-        <div class="carousel-caption">
-          <h3>Bubble Sort</h3>
-        </div>
-      </a>
-      </div>
-
-      <div class="item">
-        <a href='/dfs'>
-        <img src="image/dfs.gif" alt="Flower" width="460" height="345">
-        <div class="carousel-caption black">
-          <h3>DFS-Depth First Search</h3>
-        </div>
-      </a>
-      </div>
-
-      <div class="item">
-        <a href='/insertion'>
-        <img src="image/insertion.gif" alt="Flower" width="460" height="345">
-        <div class="carousel-caption">
-          <h3>Insertion Sort</h3>
-        </div>
-      </a>
-      </div>
-
-      <div class="item">
-        <a href='/dijkstra'>
-
-        <img src="image/dijkstra.gif" alt="Flower" width="460" height="345">
-        <div class="carousel-caption black">
-          <h3>Dijkstra Algorithm</h3>
-        </div>
-      </a>
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
 </div>
 </div>
 <footer>

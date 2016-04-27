@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Algorithm Visualisation</title>
+  <title>Browse Algorithms</title>
   <meta charset="utf-8">
   <!-- Standard Meta -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -90,9 +90,11 @@ footer {
 
 
 
-  <!-- <link rel="stylesheet" type="text/css" href="semantic-ui/semantic.css">
+  <link rel="stylesheet" type="text/css" href="semantic-ui/semantic.css">
+  <!-- <link rel="stylesheet" type="text/css" href="css/homepage.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="iconfonts/flaticon.css"> -->
 
-  <script src="semantic-ui/semantic.js"></script> -->
+  <script src="semantic-ui/semantic.js"></script>
   <!-- <script src="js/homepage.js"></script> -->
   <link href="//cdn.muicss.com/mui-0.5.5/css/mui.min.css" rel="stylesheet" type="text/css" />
 <script src="//cdn.muicss.com/mui-0.5.5/js/mui.min.js"></script>

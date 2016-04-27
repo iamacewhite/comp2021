@@ -15,14 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function () {
-    return view('three');
-});
-
-Route::get('graph', function() {
-  return view('graph');
+Route::get('bubble', function () {
+    return view('bubble');
 });
 
 Route::get('bfs', function() {
   return view('BFS');
+});
+
+Route::get('insertion', function() {
+  return view('insertion');
+});
+
+Route::get('dfs', function() {
+  return view('dfs');
+});
+
+Route::get('dijkstra ', function() {
+  return view('dil');
+});
+
+Route::get('about ', function() {
+  return view('about');
+});
+
+Route::get('browse', function() {
+  return view('browse');
 });
