@@ -65,14 +65,8 @@ function bubbleSort(y) {
         swap(cubes[i], cubes[j], positions[i], positions[j], y);
         swapValue(cubes, i, j);
         swapValue(nums, i, j);
-        // var temp = cubes[i];
-        // cubes[i] = cubes[j];
-        // cubes[j] = temp;
-        // var temp = nums[i];
-        // nums[i] = nums[j];
-        // nums[j] = temp;
+        
       }
-      //animate();
     }
   }
 }
@@ -90,6 +84,71 @@ function insertSort(y){
     }
   }
 }
+function partition(nums, p, r, y)
+{
+	var x = nums[r];
+	var i = p - 1;
+	for(var j = p; j < r; j++)
+	{
+		if(nums[j] >= x)
+		{
+			i += 1;
+			swap(cubes[i], cubes[j], positions[i], positions[j], y)
+			swapValue(cubes, i, j);
+			swapValue(nums, i, j);
+		}
+	}
+	swap(cubes[i + 1], cubes[r], positions[i + 1], positions[r], y)
+	swapValue(cubes, i + 1, r);
+	swapValue(nums, i + 1, r);
+	return i + 1;
+}
+function quickSort(nums, p, r, y)
+{
+	if(p >= r) return;
+	q = partition(nums, p, r, y);
+	quickSort(nums, p, q - 1, y);
+	quickSort(nums, q + 1, r, y);
+}
+/*function Merge(nums, p, q, r, y)
+{
+	var l = [];
+	var r = []
+	for(var i = 0; i <= q; i++)
+	{
+		l[i] = nums[i];
+	}
+	for(var i = q + 1; i <= r; i++)
+	{
+		r[i] = nums[i];
+	}
+	var i = 1;
+	var j = 1;
+	for(var k = p; k <= r; k++)
+	{
+		if(l[i] < r[j])
+		{
+			swap(cubes[i + 1], cubes[r], positions[i + 1], positions[r], y)
+			swapValue(cubes, i + 1, r);
+			swapValue(nums, i + 1, r);
+		}
+		else
+		{
+			swap(cubes[i + 1], cubes[r], positions[i + 1], positions[r], y)
+			swapValue(cubes, i + 1, r);
+			swapValue(nums, i + 1, r);
+		}
+	}
+}*/
+function mergeSort(nums, p, r, y)
+{
+	if(p == r) return;
+	q = Math.floor((p + r) / 2);
+	mergeSort(nums, p, q);
+	mergeSort(nums, q + 1, r);
+	Merge(nums, p, q, r);
+}
+
 function createAction(cube, positionx, positiony) {
   //TWEEN.removeAll();
   var tweenA = new TWEEN.Tween(cube.position);
@@ -112,11 +171,6 @@ function swap(cube1, cube2, x1, x2, y) {
 
   createAction(cube1, x2, 100);
   createAction(cube2, x1, y);
-  // console.log(y);
-  /*var text = new THREEx.DynamicTexture(512, 512);
-    text.context.font = "bolder 90px Verdana";
-    text.clear('cyan').drawText(i.toString(), undefined, 256, 'red');
-    cube2.material.map = text;*/
 
 }
 

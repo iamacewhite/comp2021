@@ -27,6 +27,10 @@ Route::get('insertion', function() {
   return view('insertion');
 });
 
+Route::get('quicksort', function() {
+  return view('quicksort');
+});
+
 Route::get('dfs', function() {
   return view('dfs');
 });
