@@ -10,11 +10,11 @@
 
 </head>
 <body>
-  {!! Html::script('js/three.min.js'); !!}
-  {!! Html::script('js/threex.dynamictexture.js'); !!}
-  {!! Html::script('js/Tween.js'); !!}
-  {!! Html::script('js/TrackballControls.js'); !!}
-  {!! Html::script('js/sorting.js'); !!}
+  <script src="https://visualgo.herokuapp.com/js/three.min.js"></script>
+  <script src="https://visualgo.herokuapp.com/js/threex.dynamictexture.js"></script>
+  <script src="https://visualgo.herokuapp.com/js/Tween.js"></script>
+  <script src="https://visualgo.herokuapp.com/js/TrackballControls.js"></script>
+  <script src="https://visualgo.herokuapp.com/js/sorting.js"></script>
   <script> // Our Javascript will go here.
     var camera, scene, renderer;
     var cubes = [];
