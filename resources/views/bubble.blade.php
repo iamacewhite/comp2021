@@ -4,7 +4,7 @@
   <meta charset=utf-8>
   <title>3D Bubble Sort</title>
   <style>
-    body { margin: 0; }
+    body { margin: 0;}
     canvas { width: 100%; height: 100% }
   </style>
 

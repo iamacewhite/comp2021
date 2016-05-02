@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Browse Algorithms</title>
+  <title>Visualgo</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,17 +20,15 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">Visualgo</a>
       <ul class="right hide-on-med-and-down">
-              <li><a href="/">Home</a></li>
+              <li><a href="browse">Browse Algorithms</a></li>
 
         <li><a href="about">About Us</a></li>
-
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-              <li><a href="/">Home</a></li>
+              <li><a href="browse">Browse Algorithms</a></li>
 
         <li><a href="about">About Us</a></li>
-
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -46,7 +44,7 @@
         </div>
         <br><br>
         <div class="row center">
-          <a href="bubble" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Insertion Sort in 3D</a>
+          <a href="bubble" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
         </div>
         <br><br>
 
@@ -92,7 +90,7 @@
     </div>
   </div>
 
-
+<!-- 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -102,7 +100,7 @@
       </div>
     </div>
     <div class="parallax"><img src="/image/dijkstra.gif" alt="Unsplashed background img 2"></div>
-  </div>
+  </div> -->
 
   <div class="container">
     <div class="section">
