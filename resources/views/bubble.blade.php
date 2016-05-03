@@ -4,17 +4,17 @@
   <meta charset=utf-8>
   <title>3D Bubble Sort</title>
   <style>
-    body { margin: 0; }
+    body { margin: 0;}
     canvas { width: 100%; height: 100% }
   </style>
 
 </head>
 <body>
-  <script src="https://visualgo.herokuapp.com/js/three.min.js"></script>
-  <script src="https://visualgo.herokuapp.com/js/threex.dynamictexture.js"></script>
-  <script src="https://visualgo.herokuapp.com/js/Tween.js"></script>
-  <script src="https://visualgo.herokuapp.com/js/TrackballControls.js"></script>
-  <script src="https://visualgo.herokuapp.com/js/sorting.js"></script>
+  <script src="/js/three.min.js"></script>
+  <script src="/js/threex.dynamictexture.js"></script>
+  <script src="/js/Tween.js"></script>
+  <script src="/js/TrackballControls.js"></script>
+  <script src="/js/sorting.js"></script>
   <script> // Our Javascript will go here.
     var camera, scene, renderer;
     var cubes = [];

@@ -5,9 +5,6 @@
 <meta charset=utf-8 />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
 <title>Animated DFS</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="https://visualgo.herokuapp.com/js/cytoscape.min.js"></script>
-<script src="https://visualgo.herokuapp.com/js/code1.js"></script>
 
 <style>
 body {
@@ -25,5 +22,9 @@ body {
 </head>
 <body>
 <div id="cy"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="/js/cytoscape.min.js"></script>
+<script src="/js/code1.js"></script>
+
 </body>
 </html>
