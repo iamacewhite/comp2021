@@ -46,20 +46,20 @@
         </div>
         <br><br>
         <div class="row center">
-          <a href="bubble" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Insertion Sort in 3D</a>
+          <a href="bubble" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Bubble Sort in 3D</a>
         </div>
         <br><br>
 
       </div>
     </div>
-    <div class="parallax"><img src="/image/insertion.gif" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="/image/bubble.gif" alt="Unsplashed background img 1"></div>
   </div>
 
 
-  <div class="container">
+  <!-- <div class="container">
     <div class="section">
 
-      <!--   Icon Section   -->
+
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
@@ -90,8 +90,7 @@
       </div>
 
     </div>
-  </div>
-
+  </div> -->
 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
@@ -102,6 +101,50 @@
       </div>
     </div>
     <div class="parallax"><img src="/image/dijkstra.gif" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light black-font"><a href="quicksort" class="waves-effect waves-light btn">View Quick Sort in 3D</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/image/insertion.gif" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light black-font"><a href="bfs" class="waves-effect waves-light btn">View BFS Algorithm</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/image/bfs.gif" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light black-font"><a href="insertion" class="waves-effect waves-light btn">View Insertion Sort in 3D</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/image/insertion.gif" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light black-font"><a href="dfs" class="waves-effect waves-light btn">View DFS Algorithm</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/image/dfs.gif" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
