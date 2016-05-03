@@ -44,7 +44,7 @@
         </div>
         <br><br>
         <div class="row center">
-          <a href="bubble" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+          <a href="browse" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
         </div>
         <br><br>
 
